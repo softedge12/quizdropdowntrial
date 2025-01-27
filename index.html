@@ -8,43 +8,62 @@
     /* CSS स्टाइल */
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
-      padding: 0;
+      margin: 0;
+      padding: 20px;
       background-color: #f4f4f9;
     }
 
     h1 {
       text-align: center;
       color: #333;
+      margin-bottom: 20px;
     }
 
-    select, iframe {
+    select, iframe, button {
       width: 100%;
-      margin: 10px 0;
+      max-width: 600px; /* अधिकतम चौड़ाई */
+      margin: 10px auto; /* सेंटर में लाने के लिए */
       padding: 10px;
+      display: block;
       border-radius: 5px;
       border: 1px solid #ccc;
+      box-sizing: border-box; /* Padding और बॉर्डर सही रखें */
     }
 
     button {
-      display: block;
-      width: 100%;
-      padding: 10px;
       background-color: #007bff;
       color: white;
-      border: none;
-      border-radius: 5px;
       font-size: 16px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
       background-color: #0056b3;
     }
 
+    iframe {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      height: 500px;
+    }
+
     #loader {
       display: none;
       text-align: center;
+      font-size: 16px;
+      color: #666;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      iframe {
+        height: 400px;
+      }
+
+      button, select, iframe {
+        width: 90%; /* छोटे स्क्रीन के लिए चौड़ाई */
+      }
     }
   </style>
 </head>
@@ -65,7 +84,7 @@
   </select>
 
   <!-- क्विज़ दिखाने के लिए iframe -->
-  <iframe id="quizIframe" height="500px"></iframe>
+  <iframe id="quizIframe"></iframe>
 
   <!-- डेटा लोडर -->
   <div id="loader">Loading...</div>
