@@ -1,5 +1,5 @@
 {
-  "History": {
+  "history": {
     "part1": {
       "quiz1": "subjects/history/part1/history1quiz.html",
       "quiz2": "subjects/history/part1/history2quiz.html"
@@ -9,7 +9,7 @@
       "quiz2": "subjects/history/part2/history(2)2quiz.html"
     }
   },
-  "Math": {
+  "math": {
     "part1": {
       "quiz1": "subjects/math/part1/math1quiz (1).html",
       "quiz2": "subjects/math/part1/math1quiz (2).html"
