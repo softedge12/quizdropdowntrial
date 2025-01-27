@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Test Quiz</title>
+  <style>
+    /* CSS स्टाइल */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    select, iframe {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #loader {
+      display: none;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mock Test Quiz</h1>
+
+  <!-- ड्रॉपडाउन मेनू -->
+  <select id="subjectDropdown">
+    <option>Select Subject</option>
+  </select>
+
+  <select id="partDropdown" disabled>
+    <option>Select Part</option>
+  </select>
+
+  <select id="quizDropdown" disabled>
+    <option>Select Quiz</option>
+  </select>
+
+  <!-- क्विज़ दिखाने के लिए iframe -->
+  <iframe id="quizIframe" height="500px"></iframe>
+
+  <!-- डेटा लोडर -->
+  <div id="loader">Loading...</div>
+
+  <script>
+    // JSON फाइल से डेटा लोड करें
+    fetch("folder_structure.json")
+      .then((response) => response.json())
+      .then((data) => {
+        const subjectDropdown = document.getElementById("subjectDropdown");
+        const partDropdown = document.getElementById("partDropdown");
+        const quizDropdown = document.getElementById("quizDropdown");
+        const loader = document.getElementById("loader");
+        const iframe = document.getElementById("quizIframe");
+
+        // विषय लोड करें
+        for (const subject in data) {
+          const option = document.createElement("option");
+          option.value = subject;
+          option.textContent = subject;
+          subjectDropdown.appendChild(option);
+        }
+
+        subjectDropdown.addEventListener("change", () => {
+          const selectedSubject = subjectDropdown.value;
+          partDropdown.innerHTML = "<option>Select Part</option>";
+          quizDropdown.innerHTML = "<option>Select Quiz</option>";
+          quizDropdown.disabled = true;
+          iframe.src = "";
+          if (selectedSubject !== "Select Subject") {
+            loader.style.display = "block";
+            partDropdown.disabled = false;
+
+            // पार्ट्स लोड करें
+            setTimeout(() => {
+              const parts = data[selectedSubject];
+              for (const part in parts) {
+                const option = document.createElement("option");
+                option.value = part;
+                option.textContent = part;
+                partDropdown.appendChild(option);
+              }
+              loader.style.display = "none";
+            }, 500); // थोड़ा विलंब (डेमो के लिए)
+          }
+        });
+
+        partDropdown.addEventListener("change", () => {
+          const selectedSubject = subjectDropdown.value;
+          const selectedPart = partDropdown.value;
+          quizDropdown.innerHTML = "<option>Select Quiz</option>";
+          iframe.src = "";
+          if (selectedPart !== "Select Part") {
+            loader.style.display = "block";
+            quizDropdown.disabled = false;
+
+            // क्विज़ लोड करें
+            setTimeout(() => {
+              const quizzes = data[selectedSubject][selectedPart];
+              for (const quiz in quizzes) {
+                const option = document.createElement("option");
+                option.value = quizzes[quiz];
+                option.textContent = quiz;
+                quizDropdown.appendChild(option);
+              }
+              loader.style.display = "none";
+            }, 500); // थोड़ा विलंब (डेमो के लिए)
+          }
+        });
+
+        quizDropdown.addEventListener("change", () => {
+          const selectedQuiz = quizDropdown.value;
+          if (selectedQuiz !== "Select Quiz") {
+            iframe.src = selectedQuiz;
+          }
+        });
+      })
+      .catch((error) => console.error("Error loading JSON:", error));
+  </script>
+</body>
+</html>

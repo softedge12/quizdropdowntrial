@@ -1,0 +1,22 @@
+{
+  "History": {
+    "part1": {
+      "quiz1": "subjects/history/part1/quiz1.html",
+      "quiz2": "subjects/history/part1/quiz2.html"
+    },
+    "part2": {
+      "quiz1": "subjects/history/part2/quiz1.html",
+      "quiz2": "subjects/history/part2/quiz2.html"
+    }
+  },
+  "Math": {
+    "part1": {
+      "quiz1": "subjects/math/part1/quiz1.html",
+      "quiz2": "subjects/math/part1/quiz2.html"
+    },
+    "part2": {
+      "quiz1": "subjects/math/part2/quiz1.html",
+      "quiz2": "subjects/math/part2/quiz2.html"
+    }
+  }
+}
