@@ -168,13 +168,14 @@
 
 </body>
   <script>
-(function() {
-    const allowedDomain = "freetraffic4web.blogspot.com";
-    if (!window.location.hostname.includes(allowedDomain)) {
-        document.body.innerHTML = ""; 
+(function () {
+    const allowedDomains = ["freetraffic4web.blogspot.com", "www.freetraffic4web.blogspot.com"];
+    if (!allowedDomains.includes(window.location.hostname)) {
+        document.body.innerHTML = ""; // पेज साफ करें
         alert("Unauthorized access!");
     }
 })();
+
 </script>
 
 </html>
