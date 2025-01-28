@@ -165,26 +165,7 @@
       .catch((error) => console.error("Error loading JSON:", error));
   </script>
   
-  <script>(function () {
-    const secretToken = "123456";
-
-    function verifyAccess() {
-        if (localStorage.getItem("authToken") === secretToken) {
-            console.log("Authorized Access");
-        } else {
-            document.body.innerHTML = "";
-            alert("Unauthorized Access!");
-        }
-    }
-
-    // पहली बार टोकन सेट करना
-    if (!localStorage.getItem("authToken")) {
-        localStorage.setItem("authToken", secretToken);
-    }
-
-    verifyAccess();
-})();
-</script>
+ 
 
 
 </body>
