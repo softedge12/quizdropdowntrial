@@ -169,12 +169,15 @@
 </body>
   <script>
 (function () {
-    const allowedDomains = ["freetraffic4web.blogspot.com", "www.freetraffic4web.blogspot.com"];
-    if (!allowedDomains.includes(window.location.hostname)) {
-        document.body.innerHTML = ""; // पेज साफ करें
+    const allowedDomain = "freetraffic4web.blogspot.com";
+    const referrer = document.referrer;
+
+    if (!referrer.includes(allowedDomain)) {
+        document.body.innerHTML = ""; 
         alert("Unauthorized access!");
     }
 })();
+
 
 </script>
 
