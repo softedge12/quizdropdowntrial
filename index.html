@@ -164,6 +164,26 @@
       })
       .catch((error) => console.error("Error loading JSON:", error));
   </script>
+  <script>
+    // टोकन चेकिंग
+    function validateToken() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get("token");
+
+      // सही टोकन की जांच करें
+      if (token !== "ABC123XYZ") {
+        document.body.innerHTML = "Unauthorized Access: Invalid Token";
+        return false;
+      }
+      return true;
+    }
+
+    window.onload = function () {
+      if (!validateToken()) {
+        document.body.innerHTML = "Unauthorized Access";
+      }
+    };
+  </script>
 
 
 </body>
